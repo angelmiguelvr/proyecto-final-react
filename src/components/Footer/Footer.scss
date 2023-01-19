@@ -1,0 +1,21 @@
+.footer{
+	background-color: #A6AFD0;
+	color: #ffffff;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 20px 0;
+
+	&__text{
+		margin: 0;
+	}
+
+	&__link{
+		text-decoration: none;
+		color: #ffffff;
+		transition: color .5s;
+
+		&:hover{
+			color:#1A3598;
+		}
+	}
+}
