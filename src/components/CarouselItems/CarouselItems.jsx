@@ -5,16 +5,16 @@ import {useEffect, useState} from "react";
 
 import '@splidejs/react-splide/css';
 import '@splidejs/react-splide/css/sea-green';
-import './Carousel.scss';
+import './CarouselItems.scss';
 
-export const Carousel = () => {
+export const CarouselItems = () => {
 	const [tools, setTools] = useState([]);
 
 	const getTools = async () => {
 		await getDocs(
 			query(
 				collection(FirebaseBD, "herramientas"),
-				limit(3)
+				limit(6)
 			)
 		)
 			.then(querySnapshot => {
@@ -30,12 +30,24 @@ export const Carousel = () => {
 	}, []);
 
 	return (
-		<Splide aria-label="My Favorite Tools" className="carousel">
+		<Splide aria-label="My Favorite Tools" className="carousel-items" options={{
+			type: 'loop',
+			perPage: 1,
+			mediaQuery: 'min',
+			gap: 40,
+			autoplay: true,
+			speed: 1000,
+			breakpoints: {
+				640: {
+					perPage: 3,
+				},
+			}
+		}}>
 			{
 				tools.map(({nombre, imagen, id}) => (
-					<SplideSlide key={id} className="carousel__item">
-						<img className="carousel__image" src={imagen} alt={nombre}/>
-						<h2 className="carousel__title">{nombre}</h2>
+					<SplideSlide key={id} className="carousel-items__item">
+						<img className="carousel-items__image" src={imagen} alt={nombre}/>
+						<h2 className="carousel-items__title">{nombre}</h2>
 					</SplideSlide>
 				))
 			}
